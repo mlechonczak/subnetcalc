@@ -1,6 +1,6 @@
 # Subnet Calculator 
 
-Program takes an IPv4 address and subnet mask as a input and returns following information:
+Program takes an IPv4 address and subnet mask as an input and returns following information:
 - IPv4 address
 - Subnet mask in dotted decimal format and CIDR notation
 - Network address
