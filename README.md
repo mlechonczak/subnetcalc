@@ -47,4 +47,4 @@ Wildcard mask: 0.0.0.255
 Created by [Mario Lechończak](https://github.com//mlechonczak). Feel free to contact me.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
