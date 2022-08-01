@@ -2,9 +2,9 @@ from sys import exit
 
 def ip_valid(ip):
 	'''This functions tests if IPv4 address is valid. If yes, it returns IPv4 address.
-	Function will accepts IP address from classess A, B and C except:
-		- 127.0.0.0/8 - uses for loopback addresses
-		- 169.254.0.0/16 - used for link-local addresses'''
+	Function will accept IP address from classes A, B and C except:
+		- 127.0.0.0/8 - uses for loopback addresses (RFC 5735 - https://datatracker.ietf.org/doc/html/rfc5735)
+		- 169.254.0.0/16 - used for link-local addresses (RFC 5735 - https://datatracker.ietf.org/doc/html/rfc5735)'''
 	ip_octets = ip.split(".")
 	
 	if len(ip_octets) == 4 and 1 <= int(ip_octets[0]) <= 223 and int(ip_octets[0]) != 127 and (int(ip_octets[0]) != 169 or int(ip_octets[1]) != 254) \
@@ -32,7 +32,7 @@ def subnet_mask_valid(subnet_mask):
 					return subnet_mask 
 
 def ip_binary(ip):
-	'''This fuction returns IP address in binary format.'''
+	'''This function returns IP address in binary format.'''
 
 	ip_octets = ip.split(".")
 	ip_addr_binary = [(8 - len(bin(int(octet)).lstrip("0b"))) * "0" + bin(int(octet)).lstrip("0b") for octet in ip_octets]
@@ -60,7 +60,7 @@ def network_address(ip, subnet_mask):
 		return network_addr 
 
 def broadcast_address(ip, subnet_mask):
-	'''This function returns broadcast adress for given IP address if subnet mask is not /31 or /32.'''
+	'''This function returns broadcast address for given IP address if subnet mask is not /31 or /32.'''
 	count_ones = subnet_mask_binary(subnet_mask).count("1")
 	count_zeros = 32 - count_ones
 
@@ -152,14 +152,15 @@ def main():
 	print("-" * 50)
 	
 
-	print(f"IP address: {ip}")
-	print(f"Subnet mask: {subnet_mask}   {cidr_notation(subnet_mask)}")
-	print(f"Network address: {network_address(ip, subnet_mask)}")
-	print(f"Broadcast address: {broadcast_address(ip, subnet_mask)}")
-	print(f"First IP in the subnet: {first_ip_address(ip, subnet_mask)}")
-	print(f"Last IP in the subnet: {last_ip_address(ip, subnet_mask)}")
-	print(f"Usable hosts per subnet: {usable_hosts_per_subnet(subnet_mask)}")
-	print(f"Wildcard mask: {wildcard_mask(subnet_mask)}")
+	#print(f"IP address: {ip}") - not needed
+	#print(f"Subnet mask: {subnet_mask}") - not needed
+	print(f"CIDR notation:       {cidr_notation(subnet_mask) + ' (' + subnet_mask + ')'}")
+	print(f"First usable IP:     {first_ip_address(ip, subnet_mask)}")
+	print(f"Last usable IP:      {last_ip_address(ip, subnet_mask)}")
+	print(f"Broadcast:           {broadcast_address(ip, subnet_mask)}")
+	print(f"Usable hosts:        {usable_hosts_per_subnet(subnet_mask)}")
+	print(f"Network:             {network_address(ip, subnet_mask)}")
+	print(f"Wildcard mask:       {wildcard_mask(subnet_mask)}")
 
 if __name__ == "__main__":
 	main()
