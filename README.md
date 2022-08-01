@@ -40,14 +40,13 @@ If you use subnet mask 255.255.255.254 (/31) or 255.255.255.255 (/32) program re
 Enter an IP address: 1.1.1.1
 Enter a subnet mask: 255.255.255.0
 --------------------------------------------------
-IP address: 1.1.1.1
-Subnet mask: 255.255.255.0   /24
-Network address: 1.1.1.0
-Broadcast address: 1.1.1.255
-First IP in the subnet: 1.1.1.1
-Last IP in the subnet: 1.1.1.254
-Usable hosts per subnet: 254
-Wildcard mask: 0.0.0.255
+CIDR notation:       /24 (255.255.255.0)
+First usable IP:     1.1.1.1
+Last usable IP:      1.1.1.254
+Broadcast:           1.1.1.255
+Usable hosts:        254
+Network:             1.1.1.0
+Wildcard mask:       0.0.0.255
 ```
 
 ## Author
